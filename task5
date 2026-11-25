@@ -1,0 +1,49 @@
+ #include <iostream>
+#include <fstream>
+using namespace std;
+
+struct Student
+{
+    char name[20];
+    int id;
+    float grade;
+    char delim;
+};
+
+int main()
+{
+    Student s;
+    char choice;
+
+    ofstream file("students.txt");
+
+    do
+    {
+        cout << "Enter student name: ";
+        cin >> ws;
+        cin.getline(s.name, 20);
+
+        cout << "Enter student ID: ";
+        cin >> s.id;
+
+        cout << "Enter student grade: ";
+        cin >> s.grade;
+
+        s.delim = '$';
+
+        file << s.name << ", "
+             << s.id << ", "
+             << s.grade << " "
+             << s.delim << endl;
+
+        cout << "Do you want to add another student? (y/n): ";
+        cin >> choice;
+
+    } while (choice == 'y' || choice == 'Y');
+
+    file.close();
+
+    cout << "Records saved successfully.";
+
+    return 0;
+}

@@ -1,0 +1,33 @@
+ #include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    ofstream out("welcome.txt");
+
+    out << "Hello Everybody";
+
+    out.close();
+
+    string text;
+
+    ifstream in("welcome.txt");
+
+    getline(in, text);
+
+    in.close();
+
+    text.replace(5, 4, "one");
+
+    ofstream file("welcome.txt");
+
+    file << text;
+
+    file.close();
+
+    cout << text;
+
+    return 0;
+}

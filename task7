@@ -1,0 +1,27 @@
+ #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+int main()
+{
+    vector<string> names =
+    {
+        "Hadeer Mahmoud",
+        "Youssef Ali",
+        "Ahmed Mostafa",
+        "Esraa Ebrahim"
+    };
+
+    sort(names.begin(), names.end());
+
+    cout << "Names in ascending order:\n";
+
+    for (int i = 0; i < names.size(); i++)
+    {
+        cout << names[i] << endl;
+    }
+
+    return 0;
+}

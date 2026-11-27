@@ -1,0 +1,85 @@
+#include <iostream>
+#include <fstream>
+#include <cstdio>
+using namespace std;
+
+int main()
+{
+    int grade;
+    int deleteGrade;
+
+    // Task 1: Create file and write five grades
+    ofstream out("grades.txt");
+
+    if (!out.is_open())
+    {
+        cout << "Error creating file";
+        return 0;
+    }
+
+    cout << "Enter five grades:\n";
+
+    for (int i = 0; i < 5; i++)
+    {
+        cin >> grade;
+        out << grade << endl;
+    }
+
+    out.close();
+
+    // Task 2: Read and print grades
+    ifstream in("grades.txt");
+
+    if (!in.is_open())
+    {
+        cout << "Error opening file";
+        return 0;
+    }
+
+    cout << "\nGrades:\n";
+
+    while (in >> grade)
+    {
+        cout << grade << endl;
+    }
+
+    in.close();
+
+    // Task 3: Ask for grade to delete
+    cout << "\nEnter grade to delete: ";
+    cin >> deleteGrade;
+
+    ifstream readFile("grades.txt");
+    ofstream tempFile("temp.txt");
+
+    if (!readFile.is_open() || !tempFile.is_open())
+    {
+        cout << "Error opening files";
+        return 0;
+    }
+
+    while (readFile >> grade)
+    {
+        if (grade != deleteGrade)
+        {
+            tempFile << grade << endl;
+        }
+    }
+
+    readFile.close();
+    tempFile.close();
+
+    // Task 4: Replace original file
+    remove("grades.txt");
+
+    if (rename("temp.txt", "grades.txt") == 0)
+    {
+        cout << "Grade deleted successfully";
+    }
+    else
+    {
+        cout << "Error replacing file";
+    }
+
+    return 0;
+}
